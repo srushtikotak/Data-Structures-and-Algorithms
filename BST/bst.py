@@ -26,6 +26,33 @@ def inorder(root):
 		print(root.value)
 		inorder(root.right)
 
+def MinValue(node):
+	while node.left is not None:
+		node = node.left
+	return node
+
+def deletenode(root,value):
+	if root is None:
+		return root
+	if value < root.value:
+		root.left = deletenode(root.left , value)
+	elif value > root.value:
+		root.right = deletenode(root.right , value)
+	else:
+		if root.left is None:
+			temp =root.right
+			root = None
+			return temp
+		elif root.right is None:
+			temp = root.left
+			root = None
+			return temp
+		temp = MinValue(root.right)
+		root.value = temp.value
+		root.right = deletenode(root.right, temp.value)
+		print("Deleted node is", value)
+	return root
+
 root = Node(100)
 insert(root, Node(90))
 insert(root, Node(110))
@@ -33,3 +60,8 @@ insert(root, Node(80))
 insert(root, Node(95))
 
 inorder(root)
+print("\n")
+
+deletenode(root,100)
+inorder(root)
+print("\n")
