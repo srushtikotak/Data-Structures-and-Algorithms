@@ -32,6 +32,26 @@ class LinkedList:
 
 		last.next = new_node
 
+	def delete(self , key):
+		temp = self.head
+		if(temp is not None):
+			if(temp.data == key):
+				self.head = temp.next
+				temp = None
+				return
+		while temp is not None:
+			if temp.data == key:
+				break
+			prev = temp
+			temp = temp.next
+
+		if(temp is None):
+			return
+
+		prev.next = temp.next
+		print("Node deleted : ", temp.data)
+		temp = None
+
 	def printlist(self):
 		temp = self.head
 		while (temp):
@@ -53,4 +73,6 @@ if __name__ == '__main__':
 	llist.insertAfter(second.next , 8)
 	llist.append(5)
 
+	llist.printlist()
+	llist.delete(2)
 	llist.printlist()

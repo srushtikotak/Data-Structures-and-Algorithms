@@ -1,4 +1,4 @@
-#include<stdio.h>
+	#include<stdio.h>
 #include<stdlib.h>
 #include<limits.h>
 
@@ -28,7 +28,7 @@ void pop(struct StackNode** root){
 		return;
 	}
 	struct StackNode* temp = *root;
-	*root = (*root) -> next;
+	*root = temp -> next;
 	printf("%d popped from stack \n", temp->data);
 	free(temp); 
 }

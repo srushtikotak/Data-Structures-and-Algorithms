@@ -39,6 +39,24 @@ void append(struct Node** head_ref,int new_data){
 	last->next = new_node;
 }
 
+void deletenode(struct Node** head_ref , int key){
+	struct Node* temp = *head_ref, *prev;
+	if(temp != NULL && temp->data == key){
+		*head_ref = temp->next;
+		free(temp);
+		return;
+	}
+	while(temp != NULL && temp->data != key){
+		prev = temp;
+		temp = temp->next;
+	}
+	if(temp == NULL) return;
+
+	prev->next = temp->next;
+	printf("Node Deleted : %d \n", temp->data);
+	free(temp);
+	return;
+}
 void printlist(struct Node *a){
 	while(a != NULL){
 		printf("%d \n", a->data);
@@ -67,7 +85,8 @@ int main(){
     push(&head , 10);
     insertAfter(head->next, 8);
     append(&head, 9);
-
+    printlist(head);
+    deletenode(&head , 2);
     printlist(head);
 	return 0;
 }
